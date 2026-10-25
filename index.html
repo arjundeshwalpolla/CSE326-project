@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusFit | Sports Facility Booking</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo">CF</span><div><b>CampusFit</b><small>SPORTS FACILITY BOOKING</small></div></div>
+  <button id="adminToggle" class="outline">Admin Login</button>
+</header>
+<section class="hero">
+  <p class="eyebrow">YOUR CAMPUS. YOUR GAME.</p>
+  <h1>Make time for <span>your best game.</span></h1>
+  <p>Reserve sports facilities in 45-minute slots, check availability and borrow equipment.</p>
+  <a class="primary linkbtn" href="#booking">Book a facility</a>
+</section>
+<main class="wrap">
+  <section id="booking" class="panel">
+    <div class="sectionhead"><div><p class="eyebrow">QUICK RESERVATION</p><h2>Book a sports facility</h2></div><span class="pill">45 MIN SLOTS</span></div>
+    <form id="bookingForm" class="formgrid">
+      <label>Student name<input id="student" required maxlength="100" placeholder="Your full name"></label>
+      <label>Student roll number<input id="roll" required maxlength="50" placeholder="e.g. RK2P26LPB58"></label>
+      <label>Choose facility<select id="facility"><option>Cardio Gym</option><option>Weight Training</option><option>Badminton Court</option><option>Table Tennis Room</option><option>Basketball Court</option></select></label>
+      <label>Booking date<input type="date" id="date" required></label>
+      <div class="slotarea"><label>Choose a time slot</label><div id="slots" class="slots"></div></div>
+      <button class="primary" type="submit">Confirm booking <span>→</span></button>
+    </form>
+    <div id="confirmation" aria-live="polite"></div>
+  </section>
+  <section class="panel">
+    <div class="sectionhead"><div><p class="eyebrow">LIVE AVAILABILITY</p><h2>Available slots</h2></div></div>
+    <p class="muted">Select a facility and date above to see remaining capacity. Student details are visible only to the admin dashboard.</p>
+    <div id="availability" class="availability"></div>
+  </section>
+  <section id="equipment" class="panel">
+    <div class="sectionhead"><div><p class="eyebrow">BORROW & RETURN</p><h2>Equipment desk</h2></div></div>
+    <form id="equipmentForm" class="formgrid">
+      <label>Student roll number<input id="eqRoll" required maxlength="50"></label>
+      <label>Equipment<select id="eqItem"><option>Badminton Racket</option><option>Basketball</option><option>Table Tennis Bat</option></select></label>
+      <label>Return due date & time<input type="datetime-local" id="due" required></label>
+      <button class="primary" type="submit">Register borrowing</button>
+    </form>
+    <div id="equipmentMessage" aria-live="polite"></div>
+  </section>
+  <section class="panel">
+    <div class="sectionhead"><div><p class="eyebrow">TRAINER TIMINGS</p><h2>Fitness trainer schedules</h2></div></div>
+    <div class="trainergrid">
+      <article class="trainer"><span>🏋️</span><h3>Strength training</h3><p>Monday–Friday</p><b>6:00 AM – 9:00 AM</b></article>
+      <article class="trainer"><span>🏃</span><h3>Cardio fitness</h3><p>Monday–Saturday</p><b>4:00 PM – 7:00 PM</b></article>
+      <article class="trainer"><span>🏸</span><h3>Racquet sports</h3><p>Tuesday–Sunday</p><b>5:00 PM – 8:00 PM</b></article>
+    </div>
+  </section>
+  <section id="adminPanel" class="panel adminpanel hidden">
+    <div class="sectionhead"><div><p class="eyebrow">RESTRICTED AREA</p><h2>Admin dashboard</h2><p class="muted">All bookings and equipment records stored on this server.</p></div><button id="logout" class="outline">Log out</button></div>
+    <div id="loginBox">
+      <form id="loginForm" class="loginform">
+        <label>Admin ID<input id="adminId" autocomplete="username" required></label>
+        <label>Password<input id="adminPassword" type="password" autocomplete="current-password" required></label>
+        <button class="primary" type="submit">Secure admin login</button>
+      </form>
+      <p class="muted tiny">Only the admin account can access student details.</p>
+      <div id="loginMessage" aria-live="polite"></div>
+    </div>
+    <div id="dashboard" class="hidden">
+      <div class="stats"><div><span>Total bookings</span><b id="bookingCount">0</b></div><div><span>Equipment records</span><b id="equipmentCount">0</b></div></div>
+      <h3>All student bookings</h3>
+      <div class="tablewrap"><table><thead><tr><th>Booking ID</th><th>Student</th><th>Roll number</th><th>Facility</th><th>Date</th><th>Time slot</th><th>Action</th></tr></thead><tbody id="adminBookings"></tbody></table></div>
+      <h3>Equipment register</h3>
+      <div class="tablewrap"><table><thead><tr><th>Record ID</th><th>Roll number</th><th>Equipment</th><th>Due</th><th>Status</th><th>Action</th></tr></thead><tbody id="adminEquipment"></tbody></table></div>
+      <button id="refreshAdmin" class="outline">Refresh dashboard</button>
+    </div>
+  </section>
+</main>
+<footer><b>CampusFit</b><span>Student sports booking demo · HTML, CSS & JavaScript + Node.js server</span></footer>
+<script src="app.js"></script>
+</body>
+</html>
