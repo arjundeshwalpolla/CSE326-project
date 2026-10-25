@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 const ADMIN_ID = process.env.ADMIN_ID || "campusadmin";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "FitAdmin@2026";
 const DATA_FILE = path.join(__dirname, "data.json");
-const PUBLIC_DIR = path.join(__dirname, "public");
+const PUBLIC_DIR = __dirname;
 
 if (!fs.existsSync(DATA_FILE)) {
   fs.writeFileSync(DATA_FILE, JSON.stringify({ bookings: [], equipment: [] }, null, 2));
